@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainWindow extends JFrame {
@@ -23,6 +25,9 @@ public class MainWindow extends JFrame {
             }
         });
     }
+
+
+
 
     public MainWindow() throws HeadlessException {
         this("Uciekajacy klawisz");
@@ -45,6 +50,7 @@ public class MainWindow extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+
         JButton btnRunButton = new JButton("Run");
         btnRunButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -59,6 +65,9 @@ public class MainWindow extends JFrame {
         btnRunButton.setBounds(160,70, 60,20);
 
 
+
+
+
         JButton cancelButton = new JButton("Anuluj");
         contentPane.add(cancelButton);
         cancelButton.setBounds(60, 70, 80, 20);
@@ -68,6 +77,10 @@ public class MainWindow extends JFrame {
                 btnRunButton.setLocation(160,70);
             }
         });
+
+        Kanwa rysunek = new Kanwa();
+        rysunek.setBounds(10,10,200,200);
+        contentPane.add(rysunek);
 
 
     }}
