@@ -7,8 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 
 public class MainWindow extends JFrame {
@@ -42,7 +41,7 @@ public class MainWindow extends JFrame {
         super(title);
 
 
-        setSize(300, 300);
+        setSize(600, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel contentPane = new JPanel();
@@ -57,12 +56,12 @@ public class MainWindow extends JFrame {
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 if (e.getX() <= btnRunButton.getWidth()-10 && e.getY()<= btnRunButton.getHeight() ) {
-                    btnRunButton.setLocation(getRandomNumber(0, contentPane.getWidth() - btnRunButton.getWidth()), getRandomNumber(0, contentPane.getHeight() - btnRunButton.getHeight()));
+                    btnRunButton.setLocation(getRandomNumber(0, contentPane.getWidth() - btnRunButton.getWidth()), getRandomNumber(contentPane.getHeight()/2, contentPane.getHeight() - btnRunButton.getHeight()));
                 }
             }
         });
         contentPane.add(btnRunButton);
-        btnRunButton.setBounds(160,70, 60,20);
+        btnRunButton.setBounds(160,570, 60,20);
 
 
 
@@ -70,16 +69,16 @@ public class MainWindow extends JFrame {
 
         JButton cancelButton = new JButton("Anuluj");
         contentPane.add(cancelButton);
-        cancelButton.setBounds(60, 70, 80, 20);
+        cancelButton.setBounds(60, 570, 80, 20);
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnRunButton.setLocation(160,70);
+                btnRunButton.setLocation(160,570);
             }
         });
 
         Kanwa rysunek = new Kanwa();
-        rysunek.setBounds(10,10,200,200);
+        rysunek.setBounds(10,10,570,350);
         contentPane.add(rysunek);
 
 
