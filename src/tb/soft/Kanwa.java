@@ -47,20 +47,26 @@ public class Kanwa extends JPanel implements MouseInputListener {
                 if(e.getButton() == 3){ //prawy przycisk myszy
                     try {
                         if(rodzajObiektu == 1){
+
                             if(!Kwadraty.isEmpty()){
+                                Kwadrat elementToRemove = null;
                                 for (Kwadrat el : Kwadraty
                                 ) {
-                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y - 10 <= e.getY() && el.y + 10 >=e.getY()) Kwadraty.remove(el);
+                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y - 10 <= e.getY() && el.y + 10 >=e.getY()) elementToRemove = el;
                                 }
+                                if(elementToRemove != null) Kwadraty.remove(elementToRemove);
                             }
+
                         }
 
                         if(rodzajObiektu == 2){
                             if(!Kola.isEmpty()){
+                                Kolo elementToRemove = null;
                                 for (Kolo el : Kola
                                 ) {
-                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y -10 <= e.getY() && el.y +10 >=e.getY()) Kola.remove(el);
+                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y -10 <= e.getY() && el.y +10 >=e.getY()) elementToRemove = el;
                                 }
+                                if(elementToRemove != null) Kola.remove(elementToRemove);
                             }
                         }
                     } catch (Exception ex) {
