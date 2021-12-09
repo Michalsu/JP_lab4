@@ -49,6 +49,22 @@ public class MainWindow extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
+        Kanwa rysunek = new Kanwa();
+        rysunek.setBounds(10,10,570,350);
+        contentPane.add(rysunek);
+        rysunek.setVisible(false);
+
+        JTextArea instrukcja = new JTextArea("Gra w uciekajacy przycisk:\n" +
+                                                "Nalezy wcisnac przycisk Run, jezeli sie to uda nagroda bedzie kanwa do rysowania\n"+
+                                                "Kanwa:\n"+
+                                                "k - zmiana obiektu na kwadrat\n"+
+                                                "o - zmiana obiektu na kolo\n"+
+                                                "lewy przycisk myszy - narysuj w tym miejscu\n"+
+                                                "prawy przycisk myszy - usun aktywny obiekt z tego miejsca\n"+
+                                                "(\"Bezpieczna\" strefa prycisku Run jest z prawej strony)");
+        instrukcja.setBounds(10,10,500,200);
+        instrukcja.setEditable(false);
+        contentPane.add(instrukcja);
 
         JButton btnRunButton = new JButton("Run");
         btnRunButton.addMouseListener(new MouseAdapter() {
@@ -60,26 +76,33 @@ public class MainWindow extends JFrame {
                 }
             }
         });
+        btnRunButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rysunek.setVisible(true);
+                btnRunButton.setVisible(false);
+                instrukcja.setLocation(10, 400);
+            }
+        });
         contentPane.add(btnRunButton);
-        btnRunButton.setBounds(160,570, 60,20);
-
-
+        btnRunButton.setBounds(160,370, 60,20);
 
 
 
         JButton cancelButton = new JButton("Anuluj");
         contentPane.add(cancelButton);
-        cancelButton.setBounds(60, 570, 80, 20);
+        cancelButton.setBounds(60, 370, 80, 20);
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnRunButton.setLocation(160,570);
+                btnRunButton.setLocation(160,370);
+                rysunek.setVisible(false);
+                btnRunButton.setVisible(true);
+                instrukcja.setLocation(10,10);
             }
         });
 
-        Kanwa rysunek = new Kanwa();
-        rysunek.setBounds(10,10,570,350);
-        contentPane.add(rysunek);
+
 
 
     }}
