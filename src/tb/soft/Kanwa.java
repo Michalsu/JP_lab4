@@ -35,13 +35,45 @@ public class Kanwa extends JPanel implements MouseInputListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(rodzajObiektu == 1){
-                    Kwadraty.add(new Kwadrat(e.getX(),e.getY()));
+                if(e.getButton() == 1){ //lewy przycisk myszy
+                    if(rodzajObiektu == 1){
+                        Kwadraty.add(new Kwadrat(e.getX(),e.getY()));
+                    }
+
+                    if(rodzajObiektu == 2){
+                        Kola.add(new Kolo(e.getX(),e.getY()));
+                    }
+                }
+                if(e.getButton() == 3){ //prawy przycisk myszy
+                    try {
+                        if(rodzajObiektu == 1){
+                            if(!Kwadraty.isEmpty()){
+                                for (Kwadrat el : Kwadraty
+                                ) {
+                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y - 10 <= e.getY() && el.y + 10 >=e.getY()) Kwadraty.remove(el);
+                                }
+                            }
+                        }
+
+                        if(rodzajObiektu == 2){
+                            if(!Kola.isEmpty()){
+                                for (Kolo el : Kola
+                                ) {
+                                    if(el.x - 10 <= e.getX() && el.x+10 >= e.getX() && el.y -10 <= e.getY() && el.y +10 >=e.getY()) Kola.remove(el);
+                                }
+                            }
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
-                if(rodzajObiektu == 2){
-                    Kola.add(new Kolo(e.getX(),e.getY()));
-                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                grabFocus();
             }
         });
     }
@@ -52,12 +84,19 @@ public class Kanwa extends JPanel implements MouseInputListener {
         Graphics2D g2d = (Graphics2D) g.create();
         try {
             if(!Kwadraty.isEmpty()){
-
+                for (Kwadrat el : Kwadraty
+                     ) {
+                    el.draw(g2d);
+                }
             }
             if(!Kola.isEmpty()){
-
+                for (Kolo el : Kola
+                ) {
+                    el.draw(g2d);
+                }
             }
             g2d.setColor(Color.BLUE);
+            repaint();
         } finally {
             g2d.dispose();
         }
@@ -80,7 +119,7 @@ public class Kanwa extends JPanel implements MouseInputListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        grabFocus();
     }
 
     @Override
